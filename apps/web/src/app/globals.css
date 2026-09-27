@@ -257,3 +257,15 @@ body > * {
 
 
 
+
+/* UMURANGA loading skeleton */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-140%);
+  }
+
+  55%,
+  100% {
+    transform: translateX(220%);
+  }
+}

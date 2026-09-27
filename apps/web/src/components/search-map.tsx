@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/skeleton";
 
 export type SearchMapListing = {
   image: string;
@@ -20,8 +21,11 @@ export type SearchMapListing = {
 const SearchMapInner = dynamic(() => import("./search-map-inner"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-full min-h-full items-center justify-center bg-[var(--surface-soft)] text-sm font-black text-[var(--muted)]">
-      Loading map...
+    <div
+      aria-label="Loading map"
+      className="h-full min-h-full w-full bg-[var(--surface-soft)]"
+    >
+      <Skeleton className="h-full min-h-full w-full rounded-none" />
     </div>
   ),
 });
