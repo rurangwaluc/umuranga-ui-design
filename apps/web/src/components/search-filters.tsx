@@ -84,8 +84,10 @@ function FilterButton({
       <button
         type="button"
         onClick={onOpen}
-        className={`flex h-11 w-full items-center justify-between gap-3 rounded-[10px] border bg-[var(--card)] px-3 text-left text-sm font-black text-[var(--foreground)] transition hover:border-[var(--primary)] ${
-          open ? "border-[var(--primary)]" : "border-[var(--line)]"
+        className={`flex h-11 w-full items-center justify-between gap-3 rounded-[10px] border bg-[var(--card)] px-3 text-left text-sm font-black text-[var(--foreground)] transition duration-200 hover:border-[#D7B16F]/65 ${
+          open
+            ? "border-[#D7B16F] shadow-[inset_0_-2px_0_#D7B16F]"
+            : "border-[var(--line)]"
         }`}
       >
         <span className="min-w-0">
@@ -219,7 +221,7 @@ export function SearchFilters({
 
           <button
             type="submit"
-            className="inline-flex h-11 items-center justify-center rounded-[10px] bg-[var(--primary)] px-4 text-xs font-black text-white"
+            className="inline-flex h-11 items-center justify-center rounded-[10px] border border-[#08285F] bg-[#08285F] px-4 text-xs font-black text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:bg-[#0A326F]"
           >
             Search
           </button>
@@ -231,7 +233,7 @@ export function SearchFilters({
             setFiltersOpen((value) => !value);
             setOpen(null);
           }}
-          className="flex h-11 w-full items-center justify-between rounded-[10px] border border-[var(--line)] bg-[var(--card)] px-3 text-sm font-black text-[var(--foreground)]"
+          className="flex h-11 w-full items-center justify-between rounded-[10px] border border-[var(--line)] bg-[var(--card)] px-3 text-sm font-black text-[var(--foreground)] shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:border-[#D7B16F]/65"
         >
           <span className="inline-flex items-center gap-2">
             <SlidersHorizontal size={15} />
@@ -286,7 +288,7 @@ export function SearchFilters({
 
             <button
               type="submit"
-              className="mt-3 inline-flex h-11 w-full items-center justify-center rounded-[10px] bg-[var(--primary)] text-sm font-black text-white"
+              className="mt-3 inline-flex h-11 w-full items-center justify-center rounded-[10px] border border-[#08285F] bg-[#08285F] text-sm font-black text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:bg-[#0A326F]"
             >
               Apply filters
             </button>
@@ -310,7 +312,7 @@ export function SearchFilters({
 
         <button
           type="button"
-          className="inline-flex h-11 min-w-[138px] items-center justify-center gap-2 rounded-[10px] border border-[var(--line)] bg-[var(--card)] px-4 text-sm font-black text-[var(--foreground)] transition hover:border-[var(--primary)]"
+          className="inline-flex h-11 min-w-[138px] items-center justify-center gap-2 rounded-[10px] border border-[var(--line)] bg-[var(--card)] px-4 text-sm font-black text-[var(--foreground)] shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:border-[#D7B16F]/65"
         >
           <SlidersHorizontal size={16} />
           More filters
@@ -319,14 +321,14 @@ export function SearchFilters({
 
         <button
           type="submit"
-          className="inline-flex h-11 min-w-[118px] items-center justify-center rounded-[10px] bg-[var(--primary)] px-5 text-sm font-black text-white transition hover:bg-[var(--primary-dark)]"
+          className="inline-flex h-11 min-w-[118px] items-center justify-center rounded-[10px] border border-[#08285F] bg-[#08285F] px-5 text-sm font-black text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:bg-[#0A326F]"
         >
           Search
         </button>
 
         <button
           type="button"
-          className="inline-flex h-11 min-w-[124px] items-center justify-center rounded-[10px] border border-[var(--primary)] bg-[var(--primary)] px-5 text-sm font-black text-white transition hover:bg-[var(--primary-dark)]"
+          className="inline-flex h-11 min-w-[124px] items-center justify-center rounded-[10px] border border-[var(--line)] bg-[var(--card)] px-5 text-sm font-black text-[var(--foreground)] transition duration-200 hover:border-[#D7B16F]/65 hover:shadow-[inset_0_-2px_0_#D7B16F]"
         >
           Save search
         </button>

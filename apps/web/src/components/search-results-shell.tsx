@@ -48,7 +48,7 @@ export function SearchResultsShell({
           <button
             type="button"
             onClick={() => setViewMode("split")}
-            className="inline-flex h-10 items-center gap-2 rounded-[9px] bg-[var(--primary)] px-4 text-xs font-black text-white"
+            className="inline-flex h-10 items-center gap-2 rounded-[9px] border border-[#08285F] bg-[#08285F] px-4 text-xs font-black text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:bg-[#0A326F]"
           >
             <PanelLeftClose size={15} />
             Split view
@@ -57,7 +57,7 @@ export function SearchResultsShell({
           <button
             type="button"
             onClick={() => setViewMode("results")}
-            className="inline-flex h-10 items-center gap-2 rounded-[9px] border border-[var(--line)] px-4 text-xs font-black"
+            className="inline-flex h-10 items-center gap-2 rounded-[9px] border border-[var(--line)] bg-[var(--card)] px-4 text-xs font-black text-[var(--foreground)] transition duration-200 hover:border-[#D7B16F]/65 hover:bg-[var(--soft)] hover:shadow-[inset_0_-2px_0_#D7B16F]"
           >
             <Rows3 size={15} />
             Results
@@ -102,7 +102,7 @@ export function SearchResultsShell({
                 </p>
               </div>
 
-              <button className="inline-flex h-10 shrink-0 items-center gap-2 rounded-[9px] border border-[var(--line)] bg-[var(--card)] px-3 text-xs font-black transition hover:border-[var(--primary)]">
+              <button className="inline-flex h-10 shrink-0 items-center gap-2 rounded-[9px] border border-[var(--line)] bg-[var(--card)] px-3 text-xs font-black transition duration-200 hover:border-[#D7B16F]/65 hover:bg-[var(--soft)]">
                 <ListFilter size={15} />
                 Recommended
               </button>
@@ -130,7 +130,7 @@ export function SearchResultsShell({
           onClick={() => setViewMode("split")}
           className={`hidden h-10 items-center gap-2 rounded-[9px] px-4 text-xs font-black transition lg:inline-flex ${
             viewMode === "split"
-              ? "bg-[var(--primary)] text-white"
+              ? "border border-[#08285F] bg-[#08285F] text-white shadow-[inset_0_-2px_0_#D7B16F]"
               : "text-[var(--muted)] hover:text-[var(--foreground)]"
           }`}
         >
@@ -143,7 +143,7 @@ export function SearchResultsShell({
           onClick={() => setViewMode("results")}
           className={`hidden h-10 items-center gap-2 rounded-[9px] px-4 text-xs font-black transition lg:inline-flex ${
             viewMode === "results"
-              ? "bg-[var(--primary)] text-white"
+              ? "border border-[#08285F] bg-[#08285F] text-white shadow-[inset_0_-2px_0_#D7B16F]"
               : "text-[var(--muted)] hover:text-[var(--foreground)]"
           }`}
         >
@@ -161,7 +161,7 @@ export function SearchResultsShell({
 
             setViewMode("map");
           }}
-          className="inline-flex h-10 items-center gap-2 rounded-[9px] px-4 text-xs font-black text-[var(--muted)] transition hover:bg-[var(--surface-soft)] hover:text-[var(--foreground)]"
+          className="inline-flex h-10 items-center gap-2 rounded-[9px] border border-transparent px-4 text-xs font-black text-[var(--muted)] transition duration-200 hover:border-[#D7B16F]/55 hover:bg-[var(--surface-soft)] hover:text-[var(--foreground)] hover:shadow-[inset_0_-2px_0_#D7B16F]"
         >
           <Map size={15} />
           Map
