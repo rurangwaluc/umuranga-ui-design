@@ -156,17 +156,17 @@ export function AuthShell({
                     className="group relative inline-flex h-[40px] items-center justify-center overflow-hidden px-0.5 tracking-[0.01em] text-[var(--foreground)]/78 transition duration-300 ease-out hover:text-[var(--foreground)]"
                   >
                     <span className="relative z-10">{label}</span>
-                    <span className="absolute bottom-[5px] left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[var(--foreground)] opacity-0 transition-all duration-300 ease-out group-hover:w-full group-hover:opacity-100" />
+                    <span className="absolute bottom-[5px] left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[#D7B16F] opacity-0 transition-all duration-300 ease-out group-hover:w-full group-hover:opacity-100" />
                   </Link>
                 ))}
               </nav>
 
               <div className="flex items-center justify-end gap-2">
-                <ThemeToggle />
+                <ThemeToggle variant="adaptive" />
 
                 <Link
                   href={headerAction.href}
-                  className="hidden h-[40px] items-center justify-center whitespace-nowrap rounded-[9px] border border-white/28 bg-white/10 px-4 text-[0.82rem] font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-0.5 hover:border-white/46 hover:bg-white/16 active:translate-y-0 sm:inline-flex lg:border-transparent lg:bg-[var(--primary)] lg:text-white lg:shadow-none lg:hover:bg-[var(--primary-dark)] lg:dark:border-white/14"
+                  className="hidden h-[40px] items-center justify-center whitespace-nowrap rounded-[9px] border border-[#08285F] bg-[#08285F] px-4 text-[0.82rem] font-black text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-[#0A326F] active:translate-y-0 sm:inline-flex"
                 >
                   {headerAction.label}
                 </Link>
@@ -174,7 +174,7 @@ export function AuthShell({
                 <button
                   type="button"
                   onClick={toggleMobileMenu}
-                  className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[8px] border border-white/24 bg-white/12 text-white transition hover:bg-white/18 sm:h-[42px] sm:w-[42px] lg:hidden"
+                  className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[8px] border border-white/24 bg-white/12 text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:border-[#D7B16F] hover:bg-white/14 sm:h-[42px] sm:w-[42px] lg:hidden"
                   aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
                   aria-expanded={mobileOpen}
                 >

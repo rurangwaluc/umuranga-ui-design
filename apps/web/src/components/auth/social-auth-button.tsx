@@ -51,7 +51,7 @@ export function SocialAuthButton({ provider, onClick }: SocialAuthButtonProps) {
     <button
       type="button"
       onClick={() => onClick(provider)}
-      className="group flex h-[49px] w-full items-center justify-center gap-3 rounded-[9px] border border-[var(--line)] bg-[var(--card)] px-4 text-sm font-black text-[var(--foreground)] transition hover:-translate-y-0.5 hover:border-[var(--primary)] hover:bg-[var(--soft)] dark:bg-white/[0.035] dark:hover:border-white/18 dark:hover:bg-white/[0.06]"
+      className="group flex h-[49px] w-full items-center justify-center gap-3 rounded-[9px] border border-[var(--line)] bg-[var(--card)] px-4 text-sm font-black text-[var(--foreground)] transition duration-200 hover:-translate-y-0.5 hover:border-[#D7B16F]/65 hover:bg-[var(--soft)] hover:shadow-[inset_0_-2px_0_#D7B16F] dark:bg-white/[0.035] dark:hover:border-[#D7B16F]/55 dark:hover:bg-white/[0.06]"
     >
       <span className="grid h-8 w-8 place-items-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--foreground)] dark:border-white/10 dark:bg-white/[0.06]">
         <ProviderMark provider={provider} />
