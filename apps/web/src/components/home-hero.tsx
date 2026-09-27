@@ -248,7 +248,7 @@ function TextInput({
         onChange={(event) => onChange(event.target.value)}
         className={`h-[46px] w-full rounded-[11px] border border-[#dce8f8] bg-white ${
           icon ? "pl-12" : "pl-4"
-        } pr-4 text-xs font-semibold text-[#07152f] outline-none transition duration-200 placeholder:text-[#6b7f9e] hover:border-[#071f4d] focus:border-[#071f4d] dark:border-white/12 dark:bg-[#15171C] dark:text-white dark:placeholder:text-white/62 sm:h-[50px] sm:rounded-[10px]`}
+        } pr-4 text-[0.9rem] font-semibold text-[#08285F] outline-none transition duration-200 placeholder:font-semibold placeholder:text-[#08285F]/72 hover:border-[#071f4d] focus:border-[#071f4d] dark:border-white/12 dark:bg-[#15171C] dark:text-white dark:placeholder:text-white/78 sm:h-[50px] sm:rounded-[10px]`}
       />
     </span>
   );
@@ -275,10 +275,10 @@ function BudgetInputs({
         value={minPrice}
         placeholder="Min Price"
         onChange={(event) => onMinChange(event.target.value)}
-        className="min-w-0 bg-transparent text-xs font-semibold text-[#07152f] outline-none placeholder:text-[#6b7f9e] dark:text-white dark:placeholder:text-white/62"
+        className="min-w-0 bg-transparent text-[0.86rem] font-semibold text-[#08285F] outline-none placeholder:font-semibold placeholder:text-[#08285F]/70 dark:text-white dark:placeholder:text-white/78"
       />
 
-      <span className="px-3 text-[#6b7f9e] dark:text-white/62">-</span>
+      <span className="px-3 font-semibold text-[#08285F]/55 dark:text-white/60">-</span>
 
       <input
         aria-label="Maximum price"
@@ -288,7 +288,7 @@ function BudgetInputs({
         value={maxPrice}
         placeholder="Max Price"
         onChange={(event) => onMaxChange(event.target.value)}
-        className="min-w-0 bg-transparent text-xs font-semibold text-[#07152f] outline-none placeholder:text-[#6b7f9e] dark:text-white dark:placeholder:text-white/62"
+        className="min-w-0 bg-transparent text-[0.86rem] font-semibold text-[#08285F] outline-none placeholder:font-semibold placeholder:text-[#08285F]/70 dark:text-white dark:placeholder:text-white/78"
       />
     </div>
   );
@@ -356,7 +356,7 @@ function MobileAdvancedSearchPortal({
                     onClick={() => setOpenAdvancedSection(section.title)}
                     className={`flex h-10 min-w-0 items-center justify-between gap-2 rounded-[10px] border px-3 text-xs font-black transition ${
                       active
-                        ? "border-[#071f4d] bg-[#eef4ff] text-[#071f4d] dark:border-[#08285f] dark:bg-[#181D26] dark:text-[#D8D1C5]"
+                        ? "border-[#D7B16F] bg-[#eef4ff] text-[#071f4d] dark:border-[#D7B16F] dark:bg-[#181D26] dark:text-white"
                         : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#071f4d] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/78 dark:hover:border-[#08285f]"
                     }`}
                   >
@@ -393,14 +393,14 @@ function MobileAdvancedSearchPortal({
                         onClick={() => toggleAdvancedOption(option)}
                         className={`flex min-h-12 items-center justify-between gap-3 rounded-[11px] border px-4 py-3 text-left text-sm font-black transition ${
                           active
-                            ? "border-[#071f4d] bg-[#eef4ff] text-[#071f4d] dark:border-[#08285f] dark:bg-[#181D26] dark:text-[#D8D1C5]"
+                            ? "border-[#D7B16F] bg-[#eef4ff] text-[#071f4d] dark:border-[#D7B16F] dark:bg-[#181D26] dark:text-white"
                             : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#071f4d] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/78 dark:hover:border-[#08285f]"
                         }`}
                       >
                         <span className="min-w-0 truncate">{option}</span>
 
                         {active ? (
-                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#071f4d] text-white">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#D7B16F] text-[#08285F]">
                             <Check size={12} strokeWidth={3} />
                           </span>
                         ) : (
@@ -666,8 +666,8 @@ export function HeroSection() {
                   onClick={() => updateSearch("mode", tab.label)}
                   className={`flex h-[40px] cursor-pointer items-center justify-center gap-2 rounded-[9px] px-3 text-[0.84rem] font-semibold transition sm:h-[40px] sm:min-w-[108px] sm:gap-2 sm:rounded-[9px] sm:px-4 sm:text-[0.86rem] ${
                     search.mode === tab.label
-                      ? "bg-[#071f4d] text-white dark:bg-[#08285f]"
-                      : "border border-[#e6edf7] bg-white text-[#344766] hover:bg-[#f6f9ff] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/86 dark:hover:bg-[#242832]"
+                      ? "bg-[#071f4d] text-white shadow-[inset_0_-2px_0_#D7B16F] dark:bg-[#08285f]"
+                      : "border border-[#e6edf7] bg-white text-[#344766] hover:border-[#D7B16F] hover:bg-[#FFF8EA] hover:text-[#08285F] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/86 dark:hover:border-[#D7B16F] dark:hover:bg-[#D7B16F]/10 dark:hover:text-white"
                   }`}
                 >
                   <tab.icon size={19} />
@@ -678,7 +678,7 @@ export function HeroSection() {
                 <button
                   type="button"
                   onClick={goToSearch}
-                    className="hidden h-[40px] cursor-pointer items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#071f4d] shadow-[0_8px_22px_rgba(7,31,77,0.08)] transition hover:-translate-y-0.5 hover:border-[#071f4d] hover:bg-white hover:shadow-[0_12px_28px_rgba(7,31,77,0.12)] dark:border-white/14 dark:bg-white/[0.06] dark:text-white/86 dark:shadow-none dark:hover:border-white/28 dark:hover:bg-white/[0.10] dark:hover:text-white sm:inline-flex"
+                    className="hidden h-[40px] cursor-pointer items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#071f4d] shadow-[inset_0_-2px_0_#D7B16F,0_8px_22px_rgba(7,31,77,0.08)] transition duration-200 hover:-translate-y-0.5 hover:border-[#D7B16F] hover:bg-[#FFF8EA] hover:text-[#08285F] dark:border-white/14 dark:bg-white/[0.06] dark:text-white/86 dark:shadow-[inset_0_-2px_0_#D7B16F] dark:hover:border-[#D7B16F] dark:hover:bg-[#D7B16F]/10 dark:hover:text-[#D7B16F] sm:inline-flex"
                 >
                   <SlidersHorizontal size={15} />
                   {search.advanced.length > 0
@@ -738,7 +738,7 @@ export function HeroSection() {
                   type="submit"
                   loading={isSearchPending}
                   loadingText="Searching"
-                  className="hidden h-[46px] cursor-pointer items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.92rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:col-span-2 sm:flex lg:col-span-1"
+                  className="hidden h-[46px] cursor-pointer items-center justify-center gap-2.5 rounded-[10px] border border-[#08285F] bg-[#08285F] px-7 text-[0.92rem] font-semibold text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:bg-[#0A326F] dark:border-[#08285F] dark:bg-[#08285F] dark:text-white sm:col-span-2 sm:flex lg:col-span-1"
                 >
                   <Search size={20} />
                   Search
@@ -752,7 +752,7 @@ export function HeroSection() {
                       type="button"
                       onClick={handleVoiceIdea}
                       disabled={voiceListening}
-                      className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-[9px] bg-[#071f4d] text-white transition hover:bg-[#061735] disabled:cursor-wait disabled:opacity-70 sm:h-8 sm:w-8"
+                      className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-[9px] border border-[#08285F] bg-[#08285F] text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:bg-[#0A326F] disabled:cursor-wait disabled:opacity-70 sm:h-8 sm:w-8"
                       aria-label={
                         voiceListening
                           ? "Listening for voice search"
@@ -776,7 +776,7 @@ export function HeroSection() {
                           ? 'Describe the land you need, e.g. "plot near main road"'
                           : 'Describe what you need, e.g. "3 bedrooms under 800k near school"'
                       }
-                      className="min-w-0 flex-1 bg-transparent text-[0.86rem] font-bold leading-5 text-[#07152f] outline-none placeholder:text-[#6b7f9e] dark:text-white dark:placeholder:text-white/45"
+                      className="min-w-0 flex-1 bg-transparent text-[0.92rem] font-semibold leading-5 text-[#08285F] outline-none placeholder:font-semibold placeholder:text-[#08285F]/72 dark:text-white dark:placeholder:text-white/78"
                     />
                   </div>
 
@@ -785,20 +785,20 @@ export function HeroSection() {
                         {trustAvatars.map((image, index) => (
                           <span
                             key={image}
-                            className="relative h-7 w-7 overflow-hidden rounded-full border-2 border-white bg-[var(--soft)] dark:border-[#15171C] sm:h-8 sm:w-8"
+                            className="relative h-8 w-8 overflow-hidden rounded-full border-2 border-white bg-[var(--soft)] dark:border-[#15171C] sm:h-9 sm:w-9"
                           >
                             <Image
                               src={image}
                               alt={`Trusted UMURANGA advisor ${index + 1}`}
                               fill
-                              sizes="32px"
-                              className="object-cover"
+                              sizes="72px"
+                              className="object-cover object-center" quality={95}
                             />
                           </span>
                         ))}
                       </div>
 
-                      <p className="min-w-0 text-[0.68rem] font-bold leading-4 text-[#344766] dark:text-white/70 sm:text-[0.72rem] sm:leading-4">
+                      <p className="min-w-0 text-[0.74rem] font-semibold leading-4 text-[#08285F] dark:text-white/82 sm:text-[0.78rem] sm:leading-5">
                         Trusted by local renters, buyers, and property teams.
                       </p>
                     </div>
@@ -809,7 +809,7 @@ export function HeroSection() {
                   type="submit"
                   loading={isSearchPending}
                   loadingText="Searching"
-                  className="mt-3 flex h-[52px] w-full items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:hidden"
+                  className="mt-3 flex h-[52px] w-full items-center justify-center gap-2.5 rounded-[10px] border border-[#08285F] bg-[#08285F] px-7 text-[0.95rem] font-semibold text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:bg-[#0A326F] dark:border-[#08285F] dark:bg-[#08285F] dark:text-white sm:hidden"
                 >
                   <Search size={20} />
                   Search
@@ -928,14 +928,14 @@ export function HeroSection() {
                               onClick={() => toggleAdvancedOption(option)}
                               className={`flex min-h-11 items-center justify-between gap-3 rounded-[11px] border px-3 py-2 text-left text-xs font-black transition ${
                                 active
-                                  ? "border-[#071f4d] bg-[#eef4ff] text-[#071f4d] dark:border-[#08285f] dark:bg-[#181D26] dark:text-[#D8D1C5]"
+                                  ? "border-[#D7B16F] bg-[#eef4ff] text-[#071f4d] dark:border-[#D7B16F] dark:bg-[#181D26] dark:text-white"
                                   : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#071f4d] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/78 dark:hover:border-[#08285f]"
                               }`}
                             >
                               <span className="min-w-0 truncate">{option}</span>
 
                               {active ? (
-                                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#071f4d] text-white">
+                                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#D7B16F] text-[#08285F]">
                                   <Check size={12} strokeWidth={3} />
                                 </span>
                               ) : (

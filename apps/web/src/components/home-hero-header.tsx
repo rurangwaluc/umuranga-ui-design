@@ -109,25 +109,25 @@ export function HomeHeroHeader({
         <div className="mx-auto grid h-[54px] max-w-[1420px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-1 transition sm:h-[64px] sm:px-2 lg:h-[70px] lg:px-3 xl:grid-cols-[340px_minmax(0,1fr)_390px] xl:gap-7">
           <Link href="/" className="flex w-fit min-w-0 items-center">
               <Image
-                src="/images/umurangalogo-white.png"
+                src="/images/umuranga-logo-gold.png"
                 alt="UMURANGA logo"
                 width={300}
                 height={100}
                 priority
-                className="h-[46px] w-auto object-contain sm:h-[52px] lg:h-[56px]"
+                className="h-[54px] w-auto object-contain sm:h-[60px] lg:h-[66px]"
               />
 
           </Link>
 
-          <nav className="hidden h-[40px] w-fit items-center justify-center gap-7 justify-self-center whitespace-nowrap px-4 text-[0.82rem] font-black text-white/88 transition xl:flex">
+          <nav className="hidden h-[40px] w-fit items-center justify-center gap-10 justify-self-center whitespace-nowrap px-4 text-[0.94rem] font-bold text-white/90 transition xl:flex">
               {visibleNavLinks.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="group relative inline-flex h-[40px] items-center justify-center overflow-hidden px-0.5 tracking-[0.01em] text-white/86 transition duration-300 ease-out hover:text-white"
+                  className="group relative inline-flex h-[40px] items-center justify-center overflow-hidden px-1 tracking-[0.005em] text-white/90 transition duration-300 ease-out hover:text-white"
                 >
                   <span className="relative z-10">{item.label}</span>
-                  <span className="absolute bottom-[5px] left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-white opacity-0 shadow-[0_0_14px_rgba(255,255,255,0.45)] transition-all duration-300 ease-out group-hover:w-full group-hover:opacity-100" />
+                  <span className="absolute bottom-[5px] left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[#D7B16F] opacity-0 transition-all duration-300 ease-out group-hover:w-full group-hover:opacity-100" />
                 </Link>
               ))}
             </nav>
@@ -135,7 +135,7 @@ export function HomeHeroHeader({
           <div className="hidden items-center justify-end gap-4 xl:flex">
             <Link
               href={listPropertyHref}
-              className="group inline-flex h-[40px] items-center justify-center gap-2 whitespace-nowrap rounded-[9px] border border-white/95 bg-white px-4 text-[0.82rem] font-black text-[#08285f] shadow-[0_12px_28px_rgba(0,0,0,0.14)] transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#f4f7ff] hover:shadow-[0_16px_34px_rgba(0,0,0,0.18)] active:translate-y-0"
+              className="group inline-flex h-[42px] items-center justify-center gap-2 whitespace-nowrap rounded-[9px] border border-[#D7B16F] bg-[#D7B16F] px-5 text-[0.9rem] font-bold text-[#08285F] shadow-[inset_0_-2px_0_#08285F,0_10px_24px_rgba(0,0,0,0.14)] transition duration-300 ease-out hover:-translate-y-0.5 hover:border-[#C79A4A] hover:bg-[#C79A4A] hover:shadow-[inset_0_-2px_0_#08285F,0_14px_30px_rgba(0,0,0,0.18)] active:translate-y-0"
             >
               <CirclePlus size={21} />
               List property
@@ -143,7 +143,7 @@ export function HomeHeroHeader({
 
             <Link
               href={dashboardHref}
-              className="group inline-flex h-[40px] items-center justify-center gap-2 whitespace-nowrap rounded-[9px] border border-white/28 bg-white/10 px-4 text-[0.82rem] font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-0.5 hover:border-white/46 hover:bg-white/16 active:translate-y-0"
+              className="group inline-flex h-[42px] items-center justify-center gap-2 whitespace-nowrap rounded-[9px] border border-white/30 bg-white/8 px-5 text-[0.9rem] font-bold text-white shadow-[inset_0_-2px_0_#D7B16F] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-0.5 hover:border-[#D7B16F] hover:bg-white/10 active:translate-y-0"
             >
               <UserRound size={22} />
               {userLabel}
@@ -158,7 +158,7 @@ export function HomeHeroHeader({
             <button
               type="button"
               onClick={toggleMobileMenu}
-              className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[8px] border border-white/24 bg-white/12 text-white transition hover:bg-white/18 sm:h-[42px] sm:w-[42px]"
+              className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[8px] border border-white/24 bg-white/12 text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:border-[#D7B16F] hover:bg-white/14 sm:h-[42px] sm:w-[42px]"
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
             >
@@ -212,7 +212,7 @@ export function HomeHeroHeader({
                 <Link
                   href={listPropertyHref}
                   onClick={closeMobileMenu}
-                  className="inline-flex h-[48px] items-center justify-center gap-2 border border-[#071f4d] bg-white text-[0.86rem] font-black text-[#071f4d] transition hover:bg-[#f6f9ff] dark:border-[#08285f] dark:bg-white dark:text-[#071f4d]"
+                  className="inline-flex h-[48px] items-center justify-center gap-2 border border-[#D7B16F] bg-[#D7B16F] text-[0.9rem] font-bold text-[#08285F] shadow-[inset_0_-2px_0_#08285F] transition duration-200 hover:bg-[#E0BD7E] dark:border-[#D7B16F] dark:bg-[#D7B16F] dark:text-[#08285F]"
                 >
                   <CirclePlus size={17} />
                   List
@@ -221,7 +221,7 @@ export function HomeHeroHeader({
                 <Link
                   href={dashboardHref}
                   onClick={closeMobileMenu}
-                  className="inline-flex h-[48px] items-center justify-center gap-2 bg-[#071f4d] text-[0.86rem] font-black text-white transition hover:bg-[#061735]"
+                  className="inline-flex h-[48px] items-center justify-center gap-2 border border-[#08285F] bg-[#08285F] text-[0.86rem] font-black text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:bg-[#0A326F]"
                 >
                   <UserRound size={17} />
                   {userLabel}

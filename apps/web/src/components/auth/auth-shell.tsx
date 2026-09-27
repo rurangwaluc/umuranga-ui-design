@@ -112,7 +112,7 @@ export function AuthShell({
           <div className="relative z-10 flex h-full flex-col justify-between p-10 xl:p-14">
             <Link href="/" className="inline-flex w-fit items-center">
               <Image
-                src="/images/umurangalogo-white.png"
+                src="/images/umuranga-logo-gold.png"
                 alt="UMURANGA"
                 width={300}
                 height={100}
@@ -139,7 +139,7 @@ export function AuthShell({
             <div className="mx-auto grid h-[54px] max-w-[1420px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-1 transition sm:h-[64px] sm:px-2 lg:h-[70px] lg:grid-cols-[minmax(0,1fr)_auto] lg:px-3">
               <Link href="/" className="flex w-fit min-w-0 items-center lg:hidden">
                 <Image
-                  src="/images/umurangalogo-white.png"
+                  src="/images/umuranga-logo-gold.png"
                   alt="UMURANGA logo"
                   width={300}
                   height={100}

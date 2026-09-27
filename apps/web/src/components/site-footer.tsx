@@ -74,18 +74,18 @@ export function SiteFooter() {
         <div>
           <Link href="/" className="inline-flex items-center">
             <Image
-              src="/images/umurangalogo.webp"
-              alt="UMURANGA"
-              width={300}
+              src="/images/umuranga-logo-gold-light.png"
+              alt="UMURANGA — Your Property Partner"
+              width={420}
               height={100}
-              className="h-[48px] w-auto object-contain dark:hidden"
+              className="h-[48px] w-auto object-contain dark:hidden sm:h-[56px]"
             />
             <Image
-              src="/images/umurangalogo-white.png"
-              alt="UMURANGA"
-              width={300}
+              src="/images/umuranga-logo-gold.png"
+              alt="UMURANGA — Your Property Partner"
+              width={420}
               height={100}
-              className="hidden h-[48px] w-auto object-contain dark:block"
+              className="hidden h-[48px] w-auto object-contain dark:block sm:h-[56px]"
             />
           </Link>
 
@@ -163,14 +163,14 @@ export function SiteFooter() {
           <div className="mt-7 grid gap-2 sm:grid-cols-2">
             <Link
               href="mailto:support@umuranga.rw"
-              className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-[9px] border border-[var(--line)] bg-[var(--card)] px-4 text-xs font-black text-[var(--foreground)] transition hover:-translate-y-0.5 hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:border-white/12 dark:bg-white/[0.04] dark:hover:border-white/20 dark:hover:bg-white/[0.08]"
+              className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-[9px] border border-[var(--line)] bg-[var(--card)] px-4 text-xs font-black text-[var(--foreground)] transition duration-200 hover:-translate-y-0.5 hover:border-[#D7B16F]/65 hover:shadow-[inset_0_-2px_0_#D7B16F] dark:border-white/12 dark:bg-white/[0.04] dark:hover:border-[#D7B16F]/65 dark:hover:bg-white/[0.06]"
             >
               Contact us
             </Link>
 
             <Link
               href="/signup"
-              className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-[9px] bg-[var(--primary)] px-4 text-xs font-black text-white transition hover:-translate-y-0.5 hover:bg-[var(--primary-dark)] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66]"
+              className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-[9px] border border-[#08285F] bg-[#08285F] px-4 text-xs font-black text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:-translate-y-0.5 hover:bg-[#0A326F] dark:border-[#08285F] dark:bg-[#08285F] dark:text-white"
             >
               Sign up
               <ArrowRight size={14} />
@@ -228,7 +228,7 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="Instagram"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[var(--primary)] hover:text-white dark:hover:bg-[#071F4D] dark:hover:text-white"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition duration-200 hover:border-[#D7B16F]/70 hover:text-[#A77A32] dark:hover:border-[#D7B16F]/60 dark:hover:text-[#D7B16F]"
             >
               <InstagramIcon />
             </Link>
@@ -236,7 +236,7 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="LinkedIn"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[var(--primary)] hover:text-white dark:hover:bg-[#071F4D] dark:hover:text-white"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition duration-200 hover:border-[#D7B16F]/70 hover:text-[#A77A32] dark:hover:border-[#D7B16F]/60 dark:hover:text-[#D7B16F]"
             >
               <LinkedInIcon />
             </Link>

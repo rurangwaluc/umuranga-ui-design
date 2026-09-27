@@ -194,7 +194,7 @@ export default function HomePage() {
 
               <Link
                 href="/search"
-                className="inline-flex h-9 w-fit items-center justify-center whitespace-nowrap rounded-[9px] border border-[var(--line)] px-4 text-xs font-black text-[var(--foreground)] transition hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:hover:bg-[var(--primary)] dark:hover:text-white"
+                className="inline-flex h-10 w-fit items-center justify-center whitespace-nowrap rounded-[8px] border border-[#08285F] bg-[#08285F] px-4 text-xs font-bold text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:-translate-y-px hover:bg-[#0A326F] dark:border-[#08285F] dark:bg-[#08285F] dark:text-white"
               >
                 View all listings
               </Link>
@@ -206,8 +206,8 @@ export default function HomePage() {
                   key={category}
                   className={`min-h-9 rounded-[9px] px-3.5 py-2 text-xs font-black transition sm:px-4 ${
                     index === 0
-                      ? "bg-[var(--primary)] text-white shadow-sm dark:bg-[var(--primary)] dark:text-white"
-                      : "border border-[var(--line)] bg-[var(--soft)] text-[var(--muted)] hover:border-[var(--primary)]/35 hover:bg-[var(--card)] hover:text-[var(--foreground)]"
+                      ? "bg-[var(--primary)] text-white shadow-[inset_0_-2px_0_#D7B16F] dark:bg-[var(--primary)] dark:text-white"
+                      : "border border-[var(--line)] bg-[var(--soft)] text-[var(--muted)] hover:border-[#D7B16F]/50 hover:bg-[var(--card)] hover:text-[var(--foreground)] hover:shadow-[inset_0_-2px_0_#D7B16F]"
                   }`}
                 >
                   {category}
@@ -223,14 +223,14 @@ export default function HomePage() {
           </section>
         </ScrollReveal>
 
-        <ScrollReveal className="mt-16 sm:mt-20" staggerChildren>
+        <ScrollReveal className="mt-10 sm:mt-12" staggerChildren>
             <section
               id="management"
               className="border-t border-b border-[var(--line)] py-12 sm:py-14 lg:py-16"
             >
               <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center xl:gap-16">
                 <div className="reveal-child">
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--primary)] dark:text-white/58">
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#A77A32] dark:text-[#D7B16F]">
                     Property operations
                   </p>
 
@@ -246,20 +246,20 @@ export default function HomePage() {
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                     <Link
                       href="/signup"
-                      className="inline-flex h-12 items-center justify-center rounded-[9px] bg-[var(--primary)] px-5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[var(--primary-dark)] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66]"
+                      className="inline-flex h-12 items-center justify-center rounded-[9px] border border-[#08285F] bg-[#08285F] px-5 text-sm font-bold text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:-translate-y-0.5 hover:bg-[#0A326F] dark:border-[#08285F] dark:bg-[#08285F] dark:text-white"
                     >
                       List or manage property
                     </Link>
                     <Link
                       href="/search"
-                      className="inline-flex h-12 items-center justify-center rounded-[9px] border border-[var(--line)] bg-transparent px-5 text-sm font-bold transition hover:-translate-y-0.5 hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:border-white/12 dark:hover:border-white/22 dark:hover:bg-white/[0.08] dark:hover:text-white"
+                      className="inline-flex h-12 items-center justify-center rounded-[9px] border border-[var(--line)] bg-transparent px-5 text-sm font-bold text-[var(--foreground)] transition duration-200 hover:-translate-y-0.5 hover:border-[#D7B16F]/65 hover:bg-[var(--card)] hover:shadow-[inset_0_-2px_0_#D7B16F] dark:border-white/12 dark:hover:border-[#D7B16F]/65 dark:hover:bg-white/[0.05] dark:hover:text-white"
                     >
                       Search properties
                     </Link>
                   </div>
                 </div>
 
-                <div className="reveal-child rounded-[18px] border border-[var(--line)] bg-[var(--card)] p-4 shadow-[0_18px_55px_rgba(7,21,47,0.055)] dark:bg-[#15171C] dark:shadow-none sm:p-5">
+                <div className="reveal-child rounded-[18px] border border-[var(--line)] bg-[var(--card)] p-4 shadow-[0_18px_55px_rgba(7,21,47,0.055)] transition duration-300 hover:border-[#D7B16F]/35 dark:bg-[#15171C] dark:shadow-none dark:hover:border-[#D7B16F]/30 sm:p-5">
                   <div className="border-b border-[var(--line)] px-2 pb-5 pt-1 sm:px-3">
                     <p className="text-sm font-black tracking-[-0.01em]">
                       Property operations file
@@ -276,7 +276,7 @@ export default function HomePage() {
                         className="grid gap-4 px-2 py-5 transition hover:bg-[var(--soft)] dark:hover:bg-white/[0.035] sm:grid-cols-[170px_minmax(0,1fr)] sm:px-3"
                       >
                         <div>
-                          <p className="text-[11px] font-black uppercase tracking-[0.16em] text-[var(--muted)]">
+                          <p className="text-[11px] font-black uppercase tracking-[0.16em] text-[#A77A32] dark:text-[#D7B16F]">
                             {item.label}
                           </p>
                           <p className="mt-2 text-lg font-black tracking-[-0.03em]">
@@ -295,11 +295,11 @@ export default function HomePage() {
             </section>
           </ScrollReveal>
 
-          <ScrollReveal className="mt-16 sm:mt-20" staggerChildren>
-            <section className="border-t border-[var(--line)] pt-14 sm:pt-16 lg:pt-20">
+          <ScrollReveal className="mt-8 sm:mt-10" staggerChildren>
+            <section className="border-t border-[var(--line)] pt-10 sm:pt-12 lg:pt-14">
               <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-stretch">
                 <div className="reveal-child">
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--primary)] dark:text-white/58">
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#A77A32] dark:text-[#D7B16F]">
                     Before you visit
                   </p>
 
@@ -326,9 +326,9 @@ export default function HomePage() {
                     {operatorCards.map((item) => (
                       <div
                         key={item.title}
-                        className="reveal-child rounded-[14px] border border-[var(--line)] bg-[var(--card)] p-4 transition hover:-translate-y-0.5 hover:border-[var(--primary)]/25 hover:shadow-[0_16px_42px_rgba(7,21,47,0.07)] dark:bg-[#15171C] dark:hover:border-white/18 dark:hover:shadow-none sm:p-5"
+                        className="reveal-child rounded-[14px] border border-[var(--line)] bg-[var(--card)] p-4 transition duration-300 hover:-translate-y-0.5 hover:border-[#D7B16F]/45 hover:shadow-[0_16px_42px_rgba(7,21,47,0.07)] dark:bg-[#15171C] dark:hover:border-[#D7B16F]/35 dark:hover:shadow-none sm:p-5"
                       >
-                        <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-[10px] border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] dark:border-white/10 dark:bg-white/[0.04]">
+                        <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-[10px] border border-[#D7B16F]/35 bg-[var(--soft)] text-[#08285F] transition dark:border-[#D7B16F]/25 dark:bg-white/[0.04] dark:text-[#D7B16F]">
                           <item.icon size={17} />
                         </div>
                         <p className="text-sm font-black tracking-[-0.03em] sm:text-2xl sm:tracking-[-0.04em]">
@@ -342,7 +342,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="reveal-child rounded-[18px] border border-[var(--line)] bg-[var(--card)] p-6 shadow-[0_20px_70px_rgba(7,21,47,0.06)] dark:bg-[#15171C] dark:shadow-none sm:p-8 lg:p-10">
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--primary)] dark:text-white/58">
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[#A77A32] dark:text-[#D7B16F]">
                       Before visibility
                     </p>
 
@@ -374,7 +374,7 @@ export default function HomePage() {
 
                     <Link
                       href="/signup"
-                      className="mt-8 inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-[9px] bg-[var(--primary)] px-5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[var(--primary-dark)] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66]"
+                      className="mt-8 inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-[9px] border border-[#08285F] bg-[#08285F] px-5 text-sm font-bold text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:-translate-y-0.5 hover:bg-[#0A326F] dark:border-[#08285F] dark:bg-[#08285F] dark:text-white"
                     >
                       Start with UMURANGA
                       <ArrowRight size={16} />

@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import {
-  ArrowLeft,
-  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
   Bath,
   BedDouble,
   Car,
@@ -68,7 +68,7 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
       aria-label={`Open ${item.title}`}
       onClick={openProperty}
       onKeyDown={openPropertyWithKeyboard}
-      className="reveal-child group cursor-pointer overflow-hidden rounded-[16px] border border-[var(--line)] bg-[var(--card)] p-2.5 shadow-[0_18px_55px_rgba(7,21,47,0.06)] outline-none transition duration-300 hover:-translate-y-0.5 hover:border-[var(--primary)]/30 hover:shadow-[0_24px_70px_rgba(7,21,47,0.12)] focus-visible:ring-2 focus-visible:ring-[var(--primary)]/45 dark:shadow-none dark:hover:border-white/18 dark:hover:shadow-none"
+      className="reveal-child group cursor-pointer overflow-hidden rounded-[16px] border border-[var(--line)] bg-[var(--card)] p-2.5 shadow-[0_18px_55px_rgba(7,21,47,0.06)] outline-none transition duration-300 hover:-translate-y-0.5 hover:border-[#D7B16F]/45 hover:shadow-[0_24px_70px_rgba(7,21,47,0.12)] focus-visible:ring-2 focus-visible:ring-[#D7B16F]/45 dark:shadow-none dark:hover:border-[#D7B16F]/35 dark:hover:shadow-none"
     >
       <div className="relative h-[232px] overflow-hidden rounded-[12px] bg-[var(--soft)] sm:h-[252px]">
         {item.images.map((image, index) => (
@@ -87,13 +87,14 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
         ))}
 
         <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-3">
-          <div className="inline-flex items-center gap-1.5 rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-black text-[#07152f] shadow-[0_10px_28px_rgba(0,0,0,0.14)]">
-            <ShieldCheck size={12} />
+          <div className="inline-flex items-center gap-1.5 rounded-[7px] border border-white/12 bg-[#08285F]/94 px-2.5 py-1.5 text-[10px] font-bold tracking-[0.01em] text-white shadow-[0_10px_26px_rgba(7,21,47,0.18)] backdrop-blur-md">
+            <ShieldCheck size={12} className="text-[#B8893F]" />
             {item.status}
           </div>
 
-          <div className="rounded-md border border-white/18 bg-black/46 px-2.5 py-1 text-[10px] font-black text-white backdrop-blur-md">
-            {item.type}
+          <div className="inline-flex items-center rounded-[6px] border border-[#D7B16F]/65 bg-[#F7F3EA]/96 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.045em] text-[#08285F] shadow-[0_4px_12px_rgba(7,21,47,0.07)] backdrop-blur-md">
+            
+              {item.type}
           </div>
         </div>
 
@@ -106,9 +107,9 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
                   stopCardClick(event);
                   previousImage();
                 }}
-              className="absolute left-3 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full border border-white/24 bg-black/38 text-white opacity-100 backdrop-blur-md transition hover:bg-black/62 sm:h-8 sm:w-8 sm:opacity-0 sm:group-hover:opacity-100"
+              className="absolute left-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-white/35 bg-[#07152F]/62 text-white opacity-100 shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-md transition duration-200 hover:border-[#D7B16F] hover:bg-[#D7B16F] hover:text-[#08285F] sm:opacity-0 sm:group-hover:opacity-100"
             >
-              <ArrowLeft size={15} />
+              <ChevronLeft size={20} strokeWidth={2.4} />
             </button>
 
             <button
@@ -118,16 +119,11 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
                   stopCardClick(event);
                   nextImage();
                 }}
-              className="absolute right-3 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full border border-white/24 bg-black/38 text-white opacity-100 backdrop-blur-md transition hover:bg-black/62 sm:h-8 sm:w-8 sm:opacity-0 sm:group-hover:opacity-100"
+              className="absolute right-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-white/35 bg-[#07152F]/62 text-white opacity-100 shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-md transition duration-200 hover:border-[#D7B16F] hover:bg-[#D7B16F] hover:text-[#08285F] sm:opacity-0 sm:group-hover:opacity-100"
             >
-              <ArrowRight size={15} />
+              <ChevronRight size={20} strokeWidth={2.4} />
             </button>
 
-            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/14 bg-black/42 px-2.5 py-1.5 text-[10px] font-black text-white backdrop-blur-md">
-              <span>{activeImage + 1}</span>
-              <span className="h-1 w-1 rounded-full bg-white/45" />
-              <span>{imageCount}</span>
-            </div>
           </>
         ) : null}
       </div>
@@ -151,7 +147,7 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
             </span>
           </p>
 
-          <span className="inline-flex h-8 shrink-0 items-center justify-center rounded-md border border-[var(--line)] px-3 text-[11px] font-black text-[var(--foreground)] transition group-hover:border-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-white dark:group-hover:bg-[var(--primary)]">
+          <span className="inline-flex h-8 shrink-0 items-center justify-center rounded-[7px] border border-[#08285F] bg-[#08285F] px-3 text-[11px] font-bold text-white shadow-[inset_0_-2px_0_#D7B16F] transition duration-200 hover:-translate-y-px hover:bg-[#0A326F] dark:border-[#08285F] dark:bg-[#08285F] dark:text-white">
             View
           </span>
         </div>
