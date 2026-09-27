@@ -75,17 +75,17 @@ export function SiteFooter() {
           <Link href="/" className="inline-flex items-center">
             <Image
               src="/images/umuranga-logo-gold-light.png"
-              alt="UMURANGA — Your Property Partner"
-              width={420}
+              alt="UMURANGA"
+              width={424}
               height={100}
-              className="h-[48px] w-auto object-contain dark:hidden sm:h-[56px]"
+              className="h-[50px] w-auto object-contain dark:hidden sm:h-[56px]"
             />
             <Image
               src="/images/umuranga-logo-gold.png"
-              alt="UMURANGA — Your Property Partner"
-              width={420}
+              alt="UMURANGA"
+              width={424}
               height={100}
-              className="hidden h-[48px] w-auto object-contain dark:block sm:h-[56px]"
+              className="hidden h-[50px] w-auto object-contain dark:block sm:h-[56px]"
             />
           </Link>
 

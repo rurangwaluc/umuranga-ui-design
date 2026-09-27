@@ -114,9 +114,9 @@ export function AuthShell({
               <Image
                 src="/images/umuranga-logo-gold.png"
                 alt="UMURANGA"
-                width={300}
+                width={424}
                 height={100}
-                className="h-[52px] w-auto object-contain"
+                className="h-[48px] w-auto object-contain"
               />
             </Link>
 
@@ -141,10 +141,10 @@ export function AuthShell({
                 <Image
                   src="/images/umuranga-logo-gold.png"
                   alt="UMURANGA logo"
-                  width={300}
+                  width={424}
                   height={100}
                   priority
-                  className="h-[46px] w-auto object-contain sm:h-[52px]"
+                  className="h-[40px] w-auto object-contain sm:h-[46px]"
                 />
               </Link>
 

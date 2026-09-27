@@ -111,10 +111,10 @@ export function HomeHeroHeader({
               <Image
                 src="/images/umuranga-logo-gold.png"
                 alt="UMURANGA logo"
-                width={300}
+                width={424}
                 height={100}
                 priority
-                className="h-[54px] w-auto object-contain sm:h-[60px] lg:h-[66px]"
+                className="h-[46px] w-auto object-contain sm:h-[51px] lg:h-[56px]"
               />
 
           </Link>
