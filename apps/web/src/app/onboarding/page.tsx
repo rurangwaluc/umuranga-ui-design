@@ -17,24 +17,28 @@ type Intent =
 const options: {
   id: Intent;
   title: string;
+  mobileTitle: string;
   description: string;
   mobileDescription: string;
 }[] = [
   {
     id: "find",
     title: "Find a property",
+    mobileTitle: "Find a property",
     description: "Buy, rent, or explore homes and land.",
     mobileDescription: "Buy, rent or explore.",
   },
   {
     id: "property",
     title: "List or manage property",
+    mobileTitle: "List or manage property",
     description: "Sell, rent out, or manage property you are responsible for.",
     mobileDescription: "Sell, rent out or manage.",
   },
   {
     id: "business",
     title: "Set up a real-estate business",
+    mobileTitle: "Start a property business",
     description:
       "For agencies, property managers, developers, and property companies.",
     mobileDescription: "Agency, management or development.",
@@ -42,12 +46,14 @@ const options: {
   {
     id: "team",
     title: "Join a real-estate team",
+    mobileTitle: "Join a real estate team",
     description: "For agents, brokers, managers, finance teams, and staff.",
     mobileDescription: "Agent, broker, manager or staff.",
   },
   {
     id: "professional",
     title: "Offer professional services",
+    mobileTitle: "Offer professional services",
     description:
       "Surveying, valuation, legal, inspection, construction, and related services.",
     mobileDescription:
@@ -133,7 +139,11 @@ export default function OnboardingPage() {
                 <button
                   key={option.id}
                   type="button"
-                  onClick={() => setSelected(option.id)}
+                  onClick={() =>
+                    setSelected((current) =>
+                      current === option.id ? null : option.id
+                    )
+                  }
                   aria-pressed={active}
                   className={[
                     "relative min-h-[132px] border p-4 text-left transition sm:min-h-[142px] sm:p-5",
@@ -145,13 +155,13 @@ export default function OnboardingPage() {
                 >
                   <span
                     className={[
-                      "block pr-7 text-[15px] font-bold leading-[1.25] tracking-[-0.02em] sm:text-[16px]",
+                      "block pr-5 text-[14px] font-bold leading-[1.2] tracking-[-0.025em] sm:pr-7 sm:text-[16px]",
                       active
                         ? "text-[#08285F] dark:text-white"
                         : "text-[var(--foreground)]",
                     ].join(" ")}
                   >
-                    {option.title}
+                    {option.mobileTitle}
                   </span>
 
                   <span className="mt-2 block max-w-[440px] text-[12px] font-medium leading-[1.5] text-[var(--muted)] sm:text-[13px]">
@@ -161,7 +171,7 @@ export default function OnboardingPage() {
                   <span
                     aria-hidden="true"
                     className={[
-                      "absolute right-4 top-4 text-base font-semibold",
+                      "absolute right-3.5 top-3.5 text-[15px] font-semibold sm:right-4 sm:top-4 sm:text-base",
                       active
                         ? "text-[#C99D54]"
                         : "text-[var(--muted)]",
@@ -220,7 +230,11 @@ export default function OnboardingPage() {
                   <button
                     key={option.id}
                     type="button"
-                    onClick={() => setSelected(option.id)}
+                    onClick={() =>
+                    setSelected((current) =>
+                      current === option.id ? null : option.id
+                    )
+                  }
                     aria-pressed={active}
                     className={[
                       "group relative flex w-full cursor-pointer items-center justify-between gap-6 border-b border-[var(--line)] py-6 text-left transition-colors",
