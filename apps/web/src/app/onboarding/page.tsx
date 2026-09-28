@@ -18,33 +18,40 @@ const options: {
   id: Intent;
   title: string;
   description: string;
+  mobileDescription: string;
 }[] = [
   {
     id: "find",
     title: "Find a property",
     description: "Buy, rent, or explore homes and land.",
+    mobileDescription: "Buy, rent or explore.",
   },
   {
     id: "property",
     title: "List or manage property",
     description: "Sell, rent out, or manage property you are responsible for.",
+    mobileDescription: "Sell, rent out or manage.",
   },
   {
     id: "business",
     title: "Set up a real-estate business",
     description:
       "For agencies, property managers, developers, and property companies.",
+    mobileDescription: "Agency, management or development.",
   },
   {
     id: "team",
     title: "Join a real-estate team",
     description: "For agents, brokers, managers, finance teams, and staff.",
+    mobileDescription: "Agent, broker, manager or staff.",
   },
   {
     id: "professional",
     title: "Offer professional services",
     description:
       "Surveying, valuation, legal, inspection, construction, and related services.",
+    mobileDescription:
+      "Surveying, valuation, legal, inspection, construction and related services.",
   },
 ];
 
@@ -71,7 +78,7 @@ export default function OnboardingPage() {
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#08285F] text-white">
-        <div className="mx-auto flex h-[70px] w-full max-w-[1420px] items-center justify-between gap-5 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-[60px] w-full max-w-[1420px] items-center justify-between gap-3 px-4 sm:h-[70px] sm:gap-5 sm:px-6 lg:px-8">
           <Link href="/" aria-label="UMURANGA home">
             <Image
               src="/images/umuranga-logo-gold.png"
@@ -79,7 +86,7 @@ export default function OnboardingPage() {
               width={424}
               height={100}
               priority
-              className="h-[44px] w-auto object-contain sm:h-[50px]"
+              className="h-[35px] w-auto object-contain sm:h-[50px]"
             />
           </Link>
 
@@ -87,26 +94,115 @@ export default function OnboardingPage() {
             {!user ? (
               <Link
                 href="/login"
-                className="inline-flex h-10 items-center justify-center rounded-[8px] border border-white/20 px-4 text-sm font-semibold text-white transition hover:border-[#D7B16F]/70 hover:bg-white/5"
+                className="inline-flex h-9 items-center justify-center rounded-[7px] border border-white/20 px-3.5 text-[13px] font-semibold text-white transition hover:border-[#D7B16F]/70 hover:bg-white/5 sm:h-10 sm:px-4 sm:text-sm"
               >
                 Sign in
               </Link>
             ) : null}
 
-            <ThemeToggle />
+            <div className="origin-right scale-[0.86] sm:scale-100">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </header>
 
-      <section className="mx-auto w-full max-w-[1180px] px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
-        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,720px)_300px] lg:justify-between lg:gap-16">
+      <section className="mx-auto w-full max-w-[1180px] px-4 py-7 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+        {/* MOBILE / TABLET */}
+        <div className="lg:hidden">
+          <div className="max-w-[620px]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.19em] text-[#9A7841] dark:text-[#D7B16F]">
+              WELCOME TO UMURANGA
+            </p>
+
+            <h1 className="mt-3 max-w-[460px] text-[2rem] font-semibold leading-[1.02] tracking-[-0.048em] sm:text-[2.6rem]">
+              What do you want to do first?
+            </h1>
+
+            <p className="mt-3 max-w-[500px] text-sm font-medium leading-6 text-[var(--muted)]">
+              Choose where to start. You can add more later.
+            </p>
+          </div>
+
+          <div className="mt-7 grid grid-cols-2 gap-2.5 sm:gap-3">
+            {options.map((option) => {
+              const active = selected === option.id;
+              const fullWidth = option.id === "professional";
+
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => setSelected(option.id)}
+                  aria-pressed={active}
+                  className={[
+                    "relative min-h-[132px] border p-4 text-left transition sm:min-h-[142px] sm:p-5",
+                    fullWidth ? "col-span-2" : "",
+                    active
+                      ? "border-[#D7B16F] bg-[#F7F3EA] shadow-[inset_0_-2px_0_#D7B16F] dark:bg-white/[0.04]"
+                      : "border-[var(--line)] bg-[var(--card)] active:bg-[var(--surface-soft)]",
+                  ].join(" ")}
+                >
+                  <span
+                    className={[
+                      "block pr-7 text-[15px] font-bold leading-[1.25] tracking-[-0.02em] sm:text-[16px]",
+                      active
+                        ? "text-[#08285F] dark:text-white"
+                        : "text-[var(--foreground)]",
+                    ].join(" ")}
+                  >
+                    {option.title}
+                  </span>
+
+                  <span className="mt-2 block max-w-[440px] text-[12px] font-medium leading-[1.5] text-[var(--muted)] sm:text-[13px]">
+                    {option.mobileDescription}
+                  </span>
+
+                  <span
+                    aria-hidden="true"
+                    className={[
+                      "absolute right-4 top-4 text-base font-semibold",
+                      active
+                        ? "text-[#C99D54]"
+                        : "text-[var(--muted)]",
+                    ].join(" ")}
+                  >
+                    {active ? "✓" : "↗"}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mt-5 border-t border-[var(--line)] pt-5">
+            <div className="grid grid-cols-2 gap-2.5">
+              <Link
+                href="/"
+                className="inline-flex h-11 items-center justify-center rounded-[8px] border border-[var(--line)] bg-[var(--card)] px-4 text-sm font-semibold text-[var(--muted)] transition-colors hover:border-[#D7B16F]/70 hover:text-[var(--foreground)]"
+              >
+                Skip for now
+              </Link>
+
+              <button
+                type="button"
+                disabled={!selected}
+                className="inline-flex h-11 items-center justify-center rounded-[8px] bg-[#08285F] px-4 text-sm font-bold text-white shadow-[inset_0_-2px_0_#D7B16F] transition disabled:cursor-not-allowed disabled:bg-[var(--soft)] disabled:text-[var(--muted)] disabled:shadow-none dark:bg-[#D7B16F] dark:text-[#08285F] dark:shadow-[inset_0_-2px_0_#08285F] dark:disabled:bg-white/[0.07] dark:disabled:text-white/30 dark:disabled:shadow-none"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* DESKTOP */}
+        <div className="hidden items-start gap-16 lg:grid lg:grid-cols-[minmax(0,720px)_300px] lg:justify-between">
           <div>
             <div className="max-w-[650px]">
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9A7841] dark:text-[#D7B16F]">
                 WELCOME TO UMURANGA
               </p>
 
-              <h1 className="mt-4 text-[2.65rem] font-semibold leading-[1] tracking-[-0.055em] sm:text-[3.25rem]">
+              <h1 className="mt-4 text-[3.25rem] font-semibold leading-[1] tracking-[-0.055em]">
                 What do you want to do first?
               </h1>
 
@@ -127,7 +223,7 @@ export default function OnboardingPage() {
                     onClick={() => setSelected(option.id)}
                     aria-pressed={active}
                     className={[
-                      "group relative flex w-full cursor-pointer items-center justify-between gap-6 border-b border-[var(--line)] py-5 text-left transition-colors sm:py-6",
+                      "group relative flex w-full cursor-pointer items-center justify-between gap-6 border-b border-[var(--line)] py-6 text-left transition-colors",
                       active
                         ? "bg-[#F7F3EA] dark:bg-white/[0.028]"
                         : "hover:bg-[var(--surface-soft)]",
@@ -147,7 +243,7 @@ export default function OnboardingPage() {
                     >
                       <span
                         className={[
-                          "block text-[18px] font-bold tracking-[-0.025em] sm:text-[19px]",
+                          "block text-[19px] font-bold tracking-[-0.025em]",
                           active
                             ? "text-[#08285F] dark:text-white"
                             : "text-[var(--foreground)]",
@@ -164,7 +260,7 @@ export default function OnboardingPage() {
                     <span
                       aria-hidden="true"
                       className={[
-                        "mr-2 shrink-0 text-lg font-semibold transition-all sm:mr-3",
+                        "mr-3 shrink-0 text-lg font-semibold transition-all",
                         active
                           ? "text-[#D7B16F]"
                           : "text-[var(--muted)] group-hover:translate-x-0.5 group-hover:text-[var(--foreground)]",
@@ -177,7 +273,7 @@ export default function OnboardingPage() {
               })}
             </div>
 
-            <div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-end">
+            <div className="mt-7 flex items-center justify-end gap-3">
               <Link
                 href="/"
                 className="inline-flex h-11 items-center justify-center px-4 text-sm font-semibold text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
@@ -195,7 +291,7 @@ export default function OnboardingPage() {
             </div>
           </div>
 
-          <aside className="hidden self-start lg:sticky lg:top-[102px] lg:block">
+          <aside className="self-start sticky top-[102px]">
             <div className="relative aspect-[4/5] overflow-hidden">
               <Image
                 src="/images/home/trust-property-real.webp"
