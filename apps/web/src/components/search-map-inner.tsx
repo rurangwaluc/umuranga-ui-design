@@ -1,17 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import L from "leaflet";
 import {
+  CircleMarker,
   MapContainer,
   Marker,
   Polygon,
+  Polyline,
   Popup,
   TileLayer,
   useMap,
+  useMapEvents,
 } from "react-leaflet";
-import type { SearchMapListing } from "./search-map";
+import type { SearchArea, SearchMapListing } from "./search-map";
 
 const kigaliSearchBoundary: [number, number][] = [
   [-1.9192, 30.0258],
@@ -26,10 +29,36 @@ const kigaliSearchBoundary: [number, number][] = [
 function FitListings({ listings }: { listings: SearchMapListing[] }) {
   const map = useMap();
 
-  if (listings.length > 0) {
-    const bounds = L.latLngBounds(listings.map((item) => [item.lat, item.lng]));
-    map.fitBounds(bounds, { padding: [54, 54], maxZoom: 14 });
-  }
+  useEffect(() => {
+    if (listings.length === 0) return;
+
+    const bounds = L.latLngBounds(
+      listings.map((item) => [item.lat, item.lng])
+    );
+
+    map.fitBounds(bounds, {
+      padding: [54, 54],
+      maxZoom: 14,
+    });
+  }, [listings, map]);
+
+  return null;
+}
+
+function DrawAreaEvents({
+  active,
+  onAddPoint,
+}: {
+  active: boolean;
+  onAddPoint: (point: [number, number]) => void;
+}) {
+  useMapEvents({
+    click(event) {
+      if (!active) return;
+
+      onAddPoint([event.latlng.lat, event.latlng.lng]);
+    },
+  });
 
   return null;
 }
@@ -64,7 +93,9 @@ function shortPrice(price: string) {
 
   if (amount >= 1_000_000) {
     const millions = amount / 1_000_000;
-    return `RWF ${millions % 1 === 0 ? millions.toFixed(0) : millions.toFixed(1)}M`;
+    return `RWF ${
+      millions % 1 === 0 ? millions.toFixed(0) : millions.toFixed(1)
+    }M`;
   }
 
   if (amount >= 1_000) {
@@ -84,9 +115,10 @@ function MarkerWithPopup({
   onSelect: (slug: string) => void;
 }) {
   const markerRef = useRef<L.Marker | null>(null);
+
   const icon = useMemo(
     () => createPropertyIcon(shortPrice(item.price), active),
-    [active, item.price],
+    [active, item.price]
   );
 
   return (
@@ -116,6 +148,7 @@ function MarkerWithPopup({
               alt={item.title}
               className="h-full w-full object-cover transition duration-500 hover:scale-[1.02]"
             />
+
             <span className="absolute left-3 top-3 rounded-md bg-white/94 px-2.5 py-1 text-[11px] font-black text-[#1A1A16]">
               {item.tag}
             </span>
@@ -133,12 +166,11 @@ function MarkerWithPopup({
                 <p className="text-[15px] font-black tracking-[-0.025em] text-[var(--foreground)]">
                   {item.price}
                 </p>
+
                 <h3 className="mt-1 truncate text-sm font-black text-[var(--foreground)]">
                   {item.title}
                 </h3>
               </div>
-
-
             </div>
 
             <p className="mt-2 text-xs font-bold text-[var(--muted)]">
@@ -159,14 +191,112 @@ function MarkerWithPopup({
 
 export default function SearchMapInner({
   listings,
+  area,
+  onAreaChange,
 }: {
   listings: SearchMapListing[];
+  area?: SearchArea | null;
+  onAreaChange?: (area: SearchArea | null) => void;
 }) {
   const center: [number, number] = [-1.9441, 30.0619];
-  const [selectedSlug, setSelectedSlug] = useState(listings[0]?.slug ?? "");
+
+  const [selectedSlug, setSelectedSlug] = useState(
+    listings[0]?.slug ?? ""
+  );
+
+  const [drawing, setDrawing] = useState(false);
+  const [draftArea, setDraftArea] = useState<SearchArea>([]);
+
+  function beginDrawing() {
+    setDraftArea([]);
+    setDrawing(true);
+  }
+
+  function cancelDrawing() {
+    setDraftArea([]);
+    setDrawing(false);
+  }
+
+  function finishDrawing() {
+    if (draftArea.length < 3) return;
+
+    onAreaChange?.(draftArea);
+    setDraftArea([]);
+    setDrawing(false);
+  }
+
+  function clearArea() {
+    setDraftArea([]);
+    setDrawing(false);
+    onAreaChange?.(null);
+  }
 
   return (
-    <div className="relative h-full min-h-full w-full overflow-hidden bg-[var(--surface-soft)]">
+    <div
+      className={[
+        "relative h-full min-h-full w-full overflow-hidden bg-[var(--surface-soft)]",
+        drawing ? "umuranga-map-drawing" : "",
+      ].join(" ")}
+    >
+      <div className="absolute right-3 top-3 z-[600]">
+        {!drawing ? (
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={beginDrawing}
+              className="inline-flex h-10 items-center justify-center rounded-[8px] border border-[#08285F] bg-[#08285F] px-4 text-xs font-bold text-white shadow-[inset_0_-2px_0_#D7B16F,0_10px_28px_rgba(7,31,77,0.24)] transition duration-200 hover:bg-[#0A326F]"
+            >
+              {area ? "Redraw area" : "Draw area"}
+            </button>
+
+            {area ? (
+              <button
+                type="button"
+                onClick={clearArea}
+                className="inline-flex h-10 items-center justify-center rounded-[8px] border border-[var(--line)] bg-[var(--card)] px-3.5 text-xs font-bold text-[var(--foreground)] shadow-[0_10px_28px_rgba(7,21,47,0.16)] transition duration-200 hover:border-[#D7B16F]/70"
+              >
+                Clear
+              </button>
+            ) : null}
+          </div>
+        ) : (
+          <div className="w-[238px] rounded-[10px] border border-[var(--line)] bg-[var(--card)] p-3.5 text-[var(--foreground)] shadow-[0_18px_48px_rgba(7,21,47,0.24)]">
+            <p className="text-xs font-bold">
+              Draw your search area
+            </p>
+
+            <p className="mt-1.5 text-[11px] font-medium leading-4 text-[var(--muted)]">
+              Tap points around the place you want to search.
+            </p>
+
+            <div className="mt-3 flex gap-2">
+              <button
+                type="button"
+                onClick={finishDrawing}
+                disabled={draftArea.length < 3}
+                className="inline-flex h-9 flex-1 items-center justify-center rounded-[7px] bg-[#08285F] px-3 text-[11px] font-bold text-white shadow-[inset_0_-2px_0_#D7B16F] transition disabled:cursor-not-allowed disabled:opacity-35"
+              >
+                Finish area
+              </button>
+
+              <button
+                type="button"
+                onClick={cancelDrawing}
+                className="inline-flex h-9 items-center justify-center rounded-[7px] border border-[var(--line)] bg-[var(--card)] px-3 text-[11px] font-bold text-[var(--foreground)] transition hover:border-[#D7B16F]/70"
+              >
+                Cancel
+              </button>
+            </div>
+
+            <p className="mt-2.5 text-[10px] font-semibold text-[var(--muted)]">
+              {draftArea.length < 3
+                ? `${draftArea.length} of at least 3 points`
+                : `${draftArea.length} points / ready to finish`}
+            </p>
+          </div>
+        )}
+      </div>
+
       <style jsx global>{`
         .leaflet-container {
           height: 100% !important;
@@ -174,6 +304,11 @@ export default function SearchMapInner({
           width: 100%;
           background: var(--surface-soft);
           font-family: inherit;
+        }
+
+        .umuranga-map-drawing .leaflet-container,
+        .umuranga-map-drawing .leaflet-container * {
+          cursor: crosshair !important;
         }
 
         .leaflet-control-attribution {
@@ -282,7 +417,7 @@ export default function SearchMapInner({
         className="h-full min-h-full w-full"
       >
         <TileLayer
-          attribution='&copy; OpenStreetMap contributors'
+          attribution="&copy; OpenStreetMap contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
@@ -298,6 +433,66 @@ export default function SearchMapInner({
         />
 
         <FitListings listings={listings} />
+
+        <DrawAreaEvents
+          active={drawing}
+          onAddPoint={(point) =>
+            setDraftArea((current) => [...current, point])
+          }
+        />
+
+        {area && area.length >= 3 ? (
+          <Polygon
+            positions={area}
+            pathOptions={{
+              color: "#D7B16F",
+              weight: 3,
+              opacity: 1,
+              fillColor: "#08285F",
+              fillOpacity: 0.14,
+            }}
+          />
+        ) : null}
+
+        {draftArea.length >= 2 ? (
+          <Polyline
+            positions={draftArea}
+            pathOptions={{
+              color: "#D7B16F",
+              weight: 3,
+              opacity: 1,
+              dashArray: "7 6",
+            }}
+          />
+        ) : null}
+
+        {draftArea.length >= 3 ? (
+          <Polygon
+            positions={draftArea}
+            pathOptions={{
+              color: "#D7B16F",
+              weight: 2,
+              opacity: 0.7,
+              fillColor: "#D7B16F",
+              fillOpacity: 0.1,
+              dashArray: "7 6",
+            }}
+          />
+        ) : null}
+
+        {draftArea.map((point, index) => (
+          <CircleMarker
+            key={`${point[0]}-${point[1]}-${index}`}
+            center={point}
+            radius={5}
+            pathOptions={{
+              color: "#FFFFFF",
+              weight: 2,
+              fillColor: "#D7B16F",
+              fillOpacity: 1,
+            }}
+          />
+        ))}
 
         {listings.map((item) => (
           <MarkerWithPopup

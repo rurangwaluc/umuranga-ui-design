@@ -18,6 +18,14 @@ export type SearchMapListing = {
   lng: number;
 };
 
+export type SearchArea = [number, number][];
+
+type SearchMapProps = {
+  listings: SearchMapListing[];
+  area?: SearchArea | null;
+  onAreaChange?: (area: SearchArea | null) => void;
+};
+
 const SearchMapInner = dynamic(() => import("./search-map-inner"), {
   ssr: false,
   loading: () => (
@@ -30,10 +38,18 @@ const SearchMapInner = dynamic(() => import("./search-map-inner"), {
   ),
 });
 
-export function SearchMap({ listings }: { listings: SearchMapListing[] }) {
+export function SearchMap({
+  listings,
+  area = null,
+  onAreaChange,
+}: SearchMapProps) {
   return (
     <div className="h-full min-h-full w-full">
-      <SearchMapInner listings={listings} />
+      <SearchMapInner
+        listings={listings}
+        area={area}
+        onAreaChange={onAreaChange}
+      />
     </div>
   );
 }
