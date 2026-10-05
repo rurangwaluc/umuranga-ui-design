@@ -52,13 +52,35 @@ function DrawAreaEvents({
   active: boolean;
   onAddPoint: (point: [number, number]) => void;
 }) {
-  useMapEvents({
+  const map = useMapEvents({
     click(event) {
       if (!active) return;
 
       onAddPoint([event.latlng.lat, event.latlng.lng]);
     },
   });
+
+  useEffect(() => {
+    if (!active) {
+      return;
+    }
+
+    const draggingWasEnabled = map.dragging.enabled();
+    const doubleClickZoomWasEnabled = map.doubleClickZoom.enabled();
+
+    map.dragging.disable();
+    map.doubleClickZoom.disable();
+
+    return () => {
+      if (draggingWasEnabled) {
+        map.dragging.enable();
+      }
+
+      if (doubleClickZoomWasEnabled) {
+        map.doubleClickZoom.enable();
+      }
+    };
+  }, [active, map]);
 
   return null;
 }
@@ -244,7 +266,7 @@ export default function SearchMapInner({
             <button
               type="button"
               onClick={beginDrawing}
-              className="inline-flex h-10 items-center justify-center rounded-[8px] border border-[#08285F] bg-[#08285F] px-4 text-xs font-bold text-white shadow-[inset_0_-2px_0_#D7B16F,0_10px_28px_rgba(7,31,77,0.24)] transition duration-200 hover:bg-[#0A326F]"
+              className="inline-flex h-11 items-center justify-center rounded-[8px] border border-[#08285F] bg-[#08285F] px-4 text-xs font-bold text-white shadow-[inset_0_-2px_0_#D7B16F,0_10px_28px_rgba(7,31,77,0.24)] transition duration-200 hover:bg-[#0A326F]"
             >
               {area ? "Redraw area" : "Draw area"}
             </button>
@@ -253,20 +275,20 @@ export default function SearchMapInner({
               <button
                 type="button"
                 onClick={clearArea}
-                className="inline-flex h-10 items-center justify-center rounded-[8px] border border-[var(--line)] bg-[var(--card)] px-3.5 text-xs font-bold text-[var(--foreground)] shadow-[0_10px_28px_rgba(7,21,47,0.16)] transition duration-200 hover:border-[#D7B16F]/70"
+                className="inline-flex h-11 items-center justify-center rounded-[8px] border border-[var(--line)] bg-[var(--card)] px-3.5 text-xs font-bold text-[var(--foreground)] shadow-[0_10px_28px_rgba(7,21,47,0.16)] transition duration-200 hover:border-[#D7B16F]/70"
               >
                 Clear
               </button>
             ) : null}
           </div>
         ) : (
-          <div className="w-[238px] rounded-[10px] border border-[var(--line)] bg-[var(--card)] p-3.5 text-[var(--foreground)] shadow-[0_18px_48px_rgba(7,21,47,0.24)]">
+          <div className="w-[min(238px,calc(100vw-24px))] rounded-[10px] border border-[var(--line)] bg-[var(--card)] p-3.5 text-[var(--foreground)] shadow-[0_18px_48px_rgba(7,21,47,0.24)]">
             <p className="text-xs font-bold">
               Draw your search area
             </p>
 
             <p className="mt-1.5 text-[11px] font-medium leading-4 text-[var(--muted)]">
-              Tap points around the place you want to search.
+              Tap at least 3 points around the area you want to search.
             </p>
 
             <div className="mt-3 flex gap-2">
@@ -274,7 +296,7 @@ export default function SearchMapInner({
                 type="button"
                 onClick={finishDrawing}
                 disabled={draftArea.length < 3}
-                className="inline-flex h-9 flex-1 items-center justify-center rounded-[7px] bg-[#08285F] px-3 text-[11px] font-bold text-white shadow-[inset_0_-2px_0_#D7B16F] transition disabled:cursor-not-allowed disabled:opacity-35"
+                className="inline-flex h-11 flex-1 items-center justify-center rounded-[7px] bg-[#08285F] px-3 text-xs font-bold text-white shadow-[inset_0_-2px_0_#D7B16F] transition disabled:cursor-not-allowed disabled:opacity-35"
               >
                 Finish area
               </button>
@@ -282,7 +304,7 @@ export default function SearchMapInner({
               <button
                 type="button"
                 onClick={cancelDrawing}
-                className="inline-flex h-9 items-center justify-center rounded-[7px] border border-[var(--line)] bg-[var(--card)] px-3 text-[11px] font-bold text-[var(--foreground)] transition hover:border-[#D7B16F]/70"
+                className="inline-flex h-11 items-center justify-center rounded-[7px] border border-[var(--line)] bg-[var(--card)] px-3 text-xs font-bold text-[var(--foreground)] transition hover:border-[#D7B16F]/70"
               >
                 Cancel
               </button>
