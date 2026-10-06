@@ -1,16 +1,15 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   CalendarDays,
   Heart,
-  Maximize2,
   MessageCircle,
   Phone,
   Share2,
 } from "lucide-react";
 import { HomeHeroHeader } from "@/components/home-hero-header";
+import { PropertyGallery } from "@/components/property-gallery";
 import { propertyListings } from "@/data/property-listings";
 
 type PropertyPageProps = {
@@ -63,8 +62,8 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
         userLabel="Sign in"
       />
 
-      <div className="mx-auto w-full max-w-[1540px] px-4 pb-28 pt-4 sm:px-6 lg:px-8 lg:pb-20 lg:pt-6">
-        <div className="flex items-center justify-between gap-3">
+      <div className="mx-auto w-full max-w-[1320px] px-4 pb-28 pt-4 sm:px-6 lg:px-7 lg:pb-20 lg:pt-5">
+        <div className="hidden items-center justify-between gap-3 lg:flex">
           <Link
             href="/search"
             className="inline-flex h-10 items-center gap-2 rounded-[8px] border border-[var(--line)] bg-[var(--card)] px-3 text-sm font-black transition duration-200 hover:border-[#D7B16F]/60"
@@ -92,71 +91,28 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
           </div>
         </div>
 
-        <section className="relative mt-5 overflow-hidden rounded-[14px] bg-[#050505]">
-          <div className="grid gap-1.5 bg-[#050505] p-1.5 lg:h-[620px] lg:grid-cols-[minmax(0,1.65fr)_minmax(340px,0.65fr)]">
-            <div className="relative h-[370px] overflow-hidden rounded-[10px] bg-black sm:h-[540px] lg:h-full">
-              <Image
-                src={property.images[0]}
-                alt={property.title}
-                fill
-                priority
-                sizes="(min-width: 1024px) 72vw, 100vw"
-                className="object-cover"
-              />
-            </div>
+          <PropertyGallery
+            images={property.images}
+            title={property.title}
+          />
 
-            <div className="grid grid-cols-2 gap-1.5 lg:grid-cols-1 lg:grid-rows-2">
-              {property.images.slice(1, 3).map((image, index) => (
-                <div
-                  key={image}
-                  className="relative h-[145px] overflow-hidden rounded-[10px] bg-black sm:h-[210px] lg:h-auto"
-                >
-                  <Image
-                    src={image}
-                    alt={`${property.title} photo ${index + 2}`}
-                    fill
-                    sizes="(min-width: 1024px) 28vw, 50vw"
-                    className="object-cover transition duration-500 hover:scale-[1.02]"
-                  />
-
-                  {index === 1 ? (
-                    <div className="absolute inset-0 grid place-items-center bg-black/30">
-                      <span className="text-xs font-black text-white">
-                        {property.images.length} photos
-                      </span>
-                    </div>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <button
-            type="button"
-            className="absolute bottom-4 right-4 inline-flex h-11 items-center gap-2 rounded-[8px] border border-white/30 bg-white px-4 text-xs font-black text-[#08285F] shadow-[0_10px_28px_rgba(0,0,0,0.18)] transition duration-200 hover:-translate-y-0.5"
-          >
-            <Maximize2 size={15} />
-            View all photos
-          </button>
-        </section>
-
-        <section className="mt-6 grid gap-4 border-b border-[var(--line)] pb-7 sm:mt-7 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-8">
+        <section className="mt-5 grid gap-4 border-b border-[var(--line)] pb-5 sm:mt-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-8">
           <div>
             <p className="text-xs font-bold text-[var(--muted)] sm:text-sm">
               {property.type}
             </p>
 
-            <h1 className="mt-2 max-w-[960px] text-[clamp(2.1rem,5vw,4.6rem)] font-semibold leading-[0.98] tracking-[-0.06em]">
+            <h1 className="mt-2 max-w-[960px] text-[clamp(1.9rem,3vw,2.7rem)] font-semibold leading-[1.04] tracking-[-0.045em]">
               {property.title}
             </h1>
 
-            <p className="mt-4 text-sm font-bold text-[var(--muted)] sm:text-base">
+            <p className="mt-2.5 text-sm font-bold text-[var(--muted)] sm:text-base">
               {property.location}
             </p>
           </div>
 
           <div className="lg:text-right">
-            <p className="text-2xl font-black tracking-[-0.045em] sm:text-3xl lg:text-4xl">
+            <p className="text-2xl font-black tracking-[-0.04em] sm:text-3xl lg:text-[1.8rem]">
               {property.price}
             </p>
 
@@ -172,7 +128,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
           {facts.map(([label, value], index) => (
             <div
               key={label}
-              className={`py-5 sm:px-5 ${
+              className={`py-4 sm:px-5 ${
                 index !== facts.length - 1
                   ? "sm:border-r sm:border-[var(--line)]"
                   : ""
@@ -186,7 +142,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
           ))}
         </section>
 
-        <section className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+        <section className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start xl:gap-12">
           <div className="min-w-0">
             <section className="border-b border-[var(--line)] pb-10">
               <h2 className="text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">

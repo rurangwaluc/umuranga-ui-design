@@ -73,6 +73,8 @@ export const propertyListings = [
       "/images/home/property-4.webp",
       "/images/home/property-6.webp",
       "/images/home/property-5.webp",
+      "/images/home/property-1.webp",
+      "/images/home/property-2.webp",
     ],
     image: "/images/home/property-4.webp",
     title: "Waterfront Inspired Residence",
