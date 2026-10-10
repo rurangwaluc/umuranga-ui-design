@@ -1,25 +1,31 @@
+import { CustomerDashboardContent } from "@/components/dashboard/customer-dashboard-content";
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 
 export default function CustomerDashboardPage() {
   return (
     <DashboardShell
       badge="Customer workspace"
-      title="Keep Your Property Search Organized."
-      description="Save properties you like, keep track of viewing requests, and stay updated when new listings match what you are looking for."
+      title="Continue your property search."
+      description="Your saved properties, upcoming viewings and searches are here when you need them."
       cards={[
         {
           title: "Saved Properties",
-          text: "Return to homes, apartments, land, and commercial spaces you want to compare or review later.",
+          text: "Return to properties you want to review later.",
+          href: "#saved-properties",
         },
         {
           title: "Viewing Requests",
-          text: "Keep requested property visits and responses from owners or agents in one clear place.",
+          text: "Keep requested property visits together.",
+          href: "#viewing-requests",
         },
         {
-          title: "Search Alerts",
-          text: "Keep track of the searches you care about and get ready for matching property updates.",
+          title: "Saved Searches",
+          text: "Return to searches UMURANGA is keeping track of.",
+          href: "#saved-searches",
         },
       ]}
-    />
+    >
+      <CustomerDashboardContent />
+    </DashboardShell>
   );
 }

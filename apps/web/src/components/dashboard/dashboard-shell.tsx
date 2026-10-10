@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import type { ReactNode } from "react";
 import {
   ArrowRight,
   Bell,
@@ -28,7 +29,9 @@ type DashboardShellProps = {
   cards: {
     title: string;
     text: string;
+      href?: string;
   }[];
+  children?: ReactNode;
 };
 
 function getInitials(name: string) {
@@ -50,6 +53,7 @@ export function DashboardShell({
   description,
   badge,
   cards,
+  children,
 }: DashboardShellProps) {
   const router = useRouter();
   const user = getStoredUser();
@@ -171,15 +175,25 @@ export function DashboardShell({
             </Link>
 
             <div className="mt-2 space-y-1">
-              {cards.map((card) => (
-                <button
-                  key={card.title}
-                  type="button"
-                  className="flex h-11 w-full items-center px-3 text-left text-sm font-bold text-[var(--muted)] transition hover:bg-[var(--surface-soft)] hover:text-[var(--foreground)]"
-                >
-                  {card.title}
-                </button>
-              ))}
+              {cards.map((card) =>
+                card.href ? (
+                  <Link
+                    key={card.title}
+                    href={card.href}
+                    className="flex h-11 w-full items-center px-3 text-left text-sm font-bold text-[var(--muted)] transition hover:bg-[var(--surface-soft)] hover:text-[var(--foreground)]"
+                  >
+                    {card.title}
+                  </Link>
+                ) : (
+                  <button
+                    key={card.title}
+                    type="button"
+                    className="flex h-11 w-full items-center px-3 text-left text-sm font-bold text-[var(--muted)] transition hover:bg-[var(--surface-soft)] hover:text-[var(--foreground)]"
+                  >
+                    {card.title}
+                  </button>
+                ),
+              )}
             </div>
           </nav>
 
@@ -204,6 +218,10 @@ export function DashboardShell({
         </aside>
 
         <section className="min-w-0 px-4 py-6 sm:px-6 sm:py-8 lg:px-9 lg:py-9 xl:px-12">
+            {children ? (
+              children
+            ) : (
+              <>
           <section className="border-b border-[var(--line)] pb-7">
             <p className="text-[0.7rem] font-black uppercase tracking-[0.18em] text-[#A27B36] dark:text-[#D7B16F]">
               {badge}
@@ -294,6 +312,8 @@ export function DashboardShell({
               </Link>
             </div>
           </section>
+              </>
+            )}
         </section>
       </div>
     </main>
