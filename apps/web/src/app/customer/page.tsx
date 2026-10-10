@@ -3,21 +3,21 @@ import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 export default function CustomerDashboardPage() {
   return (
     <DashboardShell
-      badge="Customer dashboard"
-      title="Your Saved Property Search Starts Here."
-      description="Customers will use this area to save listings, request viewings, create alerts, and track property conversations."
+      badge="Customer workspace"
+      title="Keep Your Property Search Organized."
+      description="Save properties you like, keep track of viewing requests, and stay updated when new listings match what you are looking for."
       cards={[
         {
-          title: "Saved Listings",
-          text: "Keep homes, apartments, land, and rentals you want to review later.",
+          title: "Saved Properties",
+          text: "Return to homes, apartments, land, and commercial spaces you want to compare or review later.",
         },
         {
           title: "Viewing Requests",
-          text: "Request visits and track responses from verified property owners or agents.",
+          text: "Keep requested property visits and responses from owners or agents in one clear place.",
         },
         {
-          title: "Saved Alerts",
-          text: "Get notified when matching properties appear in your target neighborhoods.",
+          title: "Search Alerts",
+          text: "Keep track of the searches you care about and get ready for matching property updates.",
         },
       ]}
     />
